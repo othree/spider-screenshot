@@ -1,0 +1,19 @@
+{
+  "name": "spider-screenshot",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "spider-screenshot": "./bin/spider-screenshot.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "dependencies": {
+    "commander": "^2.13.0",
+    "mkdirp": "^0.5.1",
+    "puppeteer": "^1.0.0",
+    "url": "^0.11.0"
+  }
+}
