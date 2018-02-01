@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/othree/spider-screenshot/issues"
   },
-  "homepage": "https://github.com/othree/spider-screenshot#readme"
+  "homepage": "https://github.com/othree/spider-screenshot#readme",
   "dependencies": {
     "commander": "^2.13.0",
     "mkdirp": "^0.5.1",
