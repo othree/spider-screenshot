@@ -8,15 +8,16 @@ const puppeteer = require('puppeteer');
 const spiderScreenshot = async function (program) {
   const print = program.verbose || program.debug ? console.log.bind(console) : msg => {};
 
-  const ENTRY_URL = program.url;
+  const ENTRY_URL = program.args[0] || program.url;
   const CONSTRAIN_URL = program.constrainUrl || ENTRY_URL;
   const SCREENSHOT_DIR = program.output;
 
   const BLACK_LIST = program.blackList ? fs.readFileSync(program.blackList).toString('utf8').split(/\n/) : [];
 
   const browser = await puppeteer.launch({headless: !program.debug});
-  const page = await browser.newPage();
   const ua = await browser.userAgent();
+  const page = await browser.newPage();
+
   await page.emulate({
     viewport: {
       width: program.width,
@@ -25,6 +26,11 @@ const spiderScreenshot = async function (program) {
     },
     userAgent: program.userAgent || ua
   });
+
+  if (program.setupScript) {
+    const setup = require(program.setupScript);
+    await setup(browser, page);
+  }
 
   let results = {[ENTRY_URL]: true};
   let queue = [ENTRY_URL];
@@ -60,6 +66,7 @@ const spiderScreenshot = async function (program) {
       return Array.from(document.querySelectorAll('a'))
         .map(e => `${e.protocol}//${e.hostname}${e.pathname}`);
     });
+
     for (let href of hrefs) {
       let u = urlp.parse(href);
       if (href.indexOf(CONSTRAIN_URL) === 0 &&
@@ -69,6 +76,7 @@ const spiderScreenshot = async function (program) {
         queue.push(href);
       }
     }
+
     return Promise.resolve();
   };
 
