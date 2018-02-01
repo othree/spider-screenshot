@@ -9,6 +9,7 @@ const spiderScreenshot = async function (program) {
   const print = program.verbose ? console.log.bind(console) : msg => {};
 
   const ENTRY_URL = program.url;
+  const CONSTRAIN_URL = program.constrainUrl || ENTRY_URL;
   const SCREENSHOT_DIR = program.output;
 
   let BLACK_LIST = [];
@@ -67,7 +68,7 @@ const spiderScreenshot = async function (program) {
     });
     for (let href of hrefs) {
       let u = urlp.parse(href);
-      if (href.indexOf(ENTRY_URL) === 0 &&
+      if (href.indexOf(CONSTRAIN_URL) === 0 &&
         !results[href] &&
         BLACK_LIST.indexOf(u.pathname) === -1) {
         results[href] = 1;
@@ -79,7 +80,7 @@ const spiderScreenshot = async function (program) {
 
   let screenshot = page => {
     let url = page.url();
-    let pathname = url.substring(ENTRY_URL.length);
+    let pathname = url.substring(CONSTRAIN_URL.length);
     let filename = pathname.replace(/^\//, '').replace(/\/$/, '').replace(/\//g, program.seperator) || 'index';
     mkdirp.sync(SCREENSHOT_DIR);
     return page.screenshot({path: path.join(SCREENSHOT_DIR, filename + '.png')});

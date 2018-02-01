@@ -7,6 +7,7 @@ const program = require('commander');
 program
   .version('0.0.1')
   .option('-u, --url <url>', 'Start URL')
+  .option('-c, --constrain-url <url>', 'Constrain URL, only URL match this URL will be screenshot')
   .option('-o, --output <path>', 'Output path', './screenshots')
   .option('-w, --width <width>', 'Window width', parseInt, 960)
   .option('-h, --height <height>', 'Window height', parseInt, 1200)
