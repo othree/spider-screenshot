@@ -36,10 +36,7 @@ const spiderScreenshot = async function (program) {
         await spider(url, cb);
         return tick(false, cb);
       } catch (e) {
-        // console.log(e);
-        // page.close();
-        // page = await browser.newPage();
-        // return tick(force ? null : url);
+        print(e);
         return tick(false, cb);
       }
     }
