@@ -6,7 +6,7 @@ const mkdirp = require('mkdirp');
 const puppeteer = require('puppeteer');
 
 const spiderScreenshot = async function (program) {
-  const print = program.verbose ? console.log.bind(console) : msg => {};
+  const print = program.verbose || program.debug ? console.log.bind(console) : msg => {};
 
   const ENTRY_URL = program.url;
   const CONSTRAIN_URL = program.constrainUrl || ENTRY_URL;
