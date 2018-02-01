@@ -11,7 +11,7 @@ program
   .option('-w, --width <width>', 'Window width', parseInt, 960)
   .option('-h, --height <height>', 'Window height', parseInt, 1200)
   .option('-s, --device-scale-factor <factor>', 'Like device pixel ratio in CSS', parseFloat, 1.5)
-  .option('-u, --user-agent <agent>', 'User Agent string')
+  .option('-u, --user-agent <agent>', 'User agent string')
   .option('-s, --seperator <sep>', 'Used to replace / in path when save screeshota', '-')
   .option('-b, --black-list <file>', 'Black list file, pathname in lines')
   .option('-v, --verbose', 'Print status')
