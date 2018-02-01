@@ -12,10 +12,7 @@ const spiderScreenshot = async function (program) {
   const CONSTRAIN_URL = program.constrainUrl || ENTRY_URL;
   const SCREENSHOT_DIR = program.output;
 
-  let BLACK_LIST = [];
-  if (program.blackList) {
-    BLACK_LIST = fs.readFileSync(program.blackList).toString('utf8').split(/\n/);
-  }
+  const BLACK_LIST = program.blackList ? fs.readFileSync(program.blackList).toString('utf8').split(/\n/) : [];
 
   const browser = await puppeteer.launch({headless: !program.debug});
   const page = await browser.newPage();
