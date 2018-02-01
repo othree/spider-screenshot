@@ -1,12 +1,10 @@
-Spider Screenshot
-=================
+# Spider Screenshot
 
 Web spider and take screenshot for input URL. Only spider the same domain, under the same pathname.
 
 Based on Google's [puppeteer](https://github.com/GoogleChrome/puppeteer).
 
-Help
-----
+## Help
 
 ```
   Usage: spider-screenshot [options]
