@@ -1,6 +1,6 @@
 {
   "name": "spider-screenshot",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -9,7 +9,20 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/othree/spider-screenshot.git"
+  },
+  "keywords": [
+    "spider",
+    "screenshot"
+  ],
+  "author": "othree",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/othree/spider-screenshot/issues"
+  },
+  "homepage": "https://github.com/othree/spider-screenshot#readme"
   "dependencies": {
     "commander": "^2.13.0",
     "mkdirp": "^0.5.1",
