@@ -16,6 +16,7 @@ program
   .option('-s, --device-scale-factor <factor>', 'Like device pixel ratio in CSS', parseFloat, 1.5)
   .option('-u, --user-agent <agent>', 'User agent string')
   .option('-s, --seperator <sep>', 'Used to replace / in path when save screeshota', '-')
+  .option('-l, --level <level>', 'Web spider level on page depth, -1 is infinity.', parseInt, 10)
   .option('-b, --black-list <file>', 'Black list file, pathname in lines')
   .option('--setup-script <file>', 'Setup script, will executes before start crawler')
   .option('-v, --verbose', 'Print status')

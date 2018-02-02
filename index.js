@@ -69,9 +69,12 @@ const spiderScreenshot = async function (program) {
 
     for (let href of hrefs) {
       let u = urlp.parse(href);
+      let pathname = href.substring(CONSTRAIN_URL.length);
+      let currentLevel = (pathname.match(/\//g) || []).length;
       if (href.indexOf(CONSTRAIN_URL) === 0 &&
         !results[href] &&
-        BLACK_LIST.indexOf(u.pathname) === -1) {
+        BLACK_LIST.indexOf(u.pathname) === -1 &&
+        (program.level === -1 || program.level >= currentLevel)) {
         results[href] = 1;
         queue.push(href);
       }
