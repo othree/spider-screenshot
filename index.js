@@ -46,7 +46,7 @@ const spiderScreenshot = async function (program) {
         return tick(false, cb);
       }
     }
-    return Promise.resolve();
+    return true;
   };
 
   let spider = async (url, cb) => {
@@ -57,7 +57,7 @@ const spiderScreenshot = async function (program) {
     let currentURL = page.url();
 
     if (results[currentURL] === 2) { // Deal with redirect to existing page
-      return Promise.resolve();
+      return true;
     } else {
       results[currentURL] = 2;
     }
@@ -77,7 +77,7 @@ const spiderScreenshot = async function (program) {
       }
     }
 
-    return Promise.resolve();
+    return true;
   };
 
   let screenshot = page => {
