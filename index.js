@@ -1,3 +1,4 @@
+const os = require('os');
 const fs = require('fs');
 const path = require('path');
 
@@ -6,7 +7,11 @@ const mkdirp = require('mkdirp');
 const puppeteer = require('puppeteer');
 
 const spiderScreenshot = async function (program) {
-  const print = program.verbose || program.debug ? console.log.bind(console) : msg => {};
+  const print = program.verbose || program.debug ? msg => {
+    process.stdout.write(msg);
+  } : msg => {};
+
+  const eol = () => print(os.EOL);
 
   const ENTRY_URL = program.args[0] || program.url;
   const CONSTRAIN_URL = program.constrainUrl || ENTRY_URL;
@@ -50,8 +55,14 @@ const spiderScreenshot = async function (program) {
   };
 
   let spider = async (url, cb) => {
-    print(url);
-    await page.goto(url, {timeout: 10 * 1000, waitUntil: ['networkidle2']});
+    print(`${url}`);
+
+    const request = await page.goto(url, {timeout: 10 * 1000, waitUntil: ['networkidle2']});
+    const status = request.status();
+
+    print(` - [${status}]`);
+    eol();
+
     await cb(page);
 
     let currentURL = page.url();
